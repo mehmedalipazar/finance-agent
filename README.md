@@ -1,0 +1,1 @@
+Günlük olarak finansal analiz yapan ve ai agent ı dünkü bulgularıyla besleyen finansal analiz raporları reposu.
