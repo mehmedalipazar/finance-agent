@@ -1,0 +1,77 @@
+date,ticker,weight_pct,delta_pp,trigger
+2026-06-16,GARAN,25,25,kurulus
+2026-06-16,TUPRS,20,20,kurulus
+2026-06-16,TCELL,20,20,kurulus
+2026-06-16,FROTO,20,20,kurulus
+2026-06-16,THYAO,15,15,kurulus
+2026-06-17,TUPRS,22,2,ISCTR girisi + THYAO cikisi sonrasi yeniden dagitim
+2026-06-17,TCELL,22,2,yeniden dagitim
+2026-06-17,GARAN,20,-5,banka konsantrasyonu ISCTR ile dengelendi
+2026-06-17,FROTO,18,-2,primli PD/DD nedeniyle hafif kirpildi
+2026-06-17,ISCTR,18,18,yeni giris (en ucuz banka + EPS beat)
+2026-06-17,THYAO,0,-15,cikarildi (dongusellik; izlemeye alindi)
+2026-06-18,TUPRS,24,2,2 seans goreli guc
+2026-06-18,GARAN,22,2,goreli direnc
+2026-06-18,ISCTR,20,2,dusuk F/K + EPS beat sinyal seti
+2026-06-18,TCELL,18,-4,defansif beklenti 2 seans gerceklesmedi
+2026-06-18,FROTO,16,-2,dusen bicak uyarisi
+2026-06-19,ISCTR,22,2,3 seansin oncusu
+2026-06-19,GARAN,22,0,sabit
+2026-06-19,TCELL,20,2,dunku kirpma toparlanmayla geri alindi
+2026-06-19,TUPRS,20,-4,3 gun goreli zayiflik
+2026-06-19,FROTO,16,0,sabit
+2026-06-20,ISCTR,23,1,kumulatif lider (hafta sonu raporu; seans yok)
+2026-06-20,GARAN,23,1,4 rapor direncli (hafta sonu raporu; seans yok)
+2026-06-20,TUPRS,20,0,sabit
+2026-06-20,FROTO,18,2,TCELL'den az whipsaw
+2026-06-20,TCELL,16,-4,Cuma kapanisi erken toparlanmayi geri verdi
+2026-06-21,ISCTR,23,0,sabit (hafta sonu raporu; seans yok)
+2026-06-21,GARAN,23,0,sabit (hafta sonu raporu; seans yok)
+2026-06-21,TUPRS,20,0,sabit
+2026-06-21,FROTO,18,0,sabit
+2026-06-21,TCELL,16,0,sabit
+2026-06-22,TUPRS,24,4,oversold giris zamanlamasi (SONRADAN HATA: -%2.73 ile curudu)
+2026-06-22,ISCTR,21,-2,RSI 75.9 asiri alim - kovalamama
+2026-06-22,GARAN,21,-2,RSI 74.5 asiri alim - simetrik kirpma
+2026-06-22,FROTO,18,0,sabit
+2026-06-22,TCELL,16,0,sabit
+2026-06-23,ISCTR,22,1,RSI soguyor
+2026-06-23,GARAN,22,1,feed acilinca direncli
+2026-06-23,TUPRS,20,-4,overweight zamanlamasi curudu - taktik artis geri alindi
+2026-06-23,FROTO,20,2,en temiz teknik kurulum
+2026-06-23,TCELL,16,0,sabit
+2026-06-24,ISCTR,21,-1,RSI elevated - giris zamanlamasi zayif
+2026-06-24,GARAN,21,-1,simetrik kirpma
+2026-06-24,FROTO,22,2,en temiz teknik kurulum + cazip giris bandi
+2026-06-24,TUPRS,20,0,oversold=ekle hatasini tekrarlamamak icin sabit
+2026-06-24,TCELL,16,0,sabit
+2026-06-25,ISCTR,22,1,RSI sogudu (SONRADAN: bayat-veri premisi 06-26'da duzeltildi)
+2026-06-25,GARAN,22,1,RSI sogudu (ayni not)
+2026-06-25,FROTO,20,-2,dunku taktik artis geri alindi
+2026-06-25,TUPRS,20,0,sabit
+2026-06-25,TCELL,16,0,sabit
+2026-06-26,GARAN,21,-1,tetik (a) tez duzeltmesi: bayat-veri artisi kismen geri alindi
+2026-06-26,ISCTR,21,-1,tetik (a) ayni duzeltme
+2026-06-26,TCELL,20,4,tetik (c) rejim: en saglikli teknik kurulum
+2026-06-26,TUPRS,20,0,sabit
+2026-06-26,FROTO,18,-2,tetik (c) rejim: MACD negatife dondu + en kotu alfa
+2026-06-29,GARAN,21,0,tetik yok - sabit
+2026-06-29,ISCTR,21,0,tetik yok - sabit
+2026-06-29,TCELL,20,0,tetik yok - sabit
+2026-06-29,TUPRS,20,0,tetik yok - sabit (oversold sicramasina bilinçli kayitsiz)
+2026-06-29,FROTO,18,0,tetik yok - sabit
+2026-06-30,GARAN,21,0,tetik yok - sabit
+2026-06-30,ISCTR,21,0,tetik yok - sabit
+2026-06-30,TCELL,20,0,tetik yok - sabit
+2026-06-30,TUPRS,20,0,tetik yok - sabit (dunku sicrama sondu; karar dogrulandi)
+2026-06-30,FROTO,18,0,tetik yok - sabit
+2026-07-01,GARAN,21,0,tetik yok - sabit
+2026-07-01,ISCTR,21,0,tetik yok - sabit
+2026-07-01,TCELL,20,0,tetik yok - sabit
+2026-07-01,TUPRS,20,0,tetik yok - sabit (katalizorsuz +%4 sicramaya overweight yapilmadi)
+2026-07-01,FROTO,18,0,tetik yok - sabit
+2026-07-02,GARAN,21,0,tetik yok - sabit
+2026-07-02,ISCTR,21,0,tetik yok - sabit
+2026-07-02,TCELL,20,0,tetik yok - sabit
+2026-07-02,TUPRS,20,0,tetik esige yaklasti (2. seans yukari) - overweight 3. seans teyidine birakildi
+2026-07-02,FROTO,18,0,tetik yok - sabit

@@ -1,0 +1,8 @@
+date_set,scope,condition,action,status,notes
+2026-06-30,PORTFOY,MACD histogram 4/5 cekirdekte negatif 2-3 seans ust uste,Rotasyon degerlendir (momentum adaylarina),active,07-02 itibariyle 2. gun; bankalarda fiyat yukari oldugu icin sinyal zayifliyor
+2026-07-02,TUPRS,3 Tem'de fiyat yukari + MACD pozitif kalirsa (3. seans teyit),+2/+3 puan overweight; fon kaynagi FROTO,active,29-30 Haz tek-gun sonme hafizasi nedeniyle 2 seansta tetiklenmedi
+2026-07-02,TUPRS,Stop 200 TL,Kesim,active,Stop 195'ten 200'e yukseltildi (07-02 raporu)
+2026-07-01,TCELL,MACD negatif 4-5. seans veya stop 98 TL,Kesim gundeme,active,07-02: MACD 3. gun negatif
+2026-06-16,FROTO,Stop 78 TL veya yeni temel bozulma,Kesim,active,TUPRS overweight tetiklenirse fon kaynagi burasi
+2026-07-01,GARAN+ISCTR,Banka MACD'leri 2-3 seans negatif kalirsa,Rejim tetigi degerlendir,active,07-02: fiyatlar yukari - MACD negatifligi gecikmeli sinyal artigi sayildi
+2026-06-17,THYAO,RSI asiri alimdan cikip momentum korunursa,Geri alim degerlendir,active,07-02: RSI ~76 asiri alim; tek tutarli pozitif-alfa isim
