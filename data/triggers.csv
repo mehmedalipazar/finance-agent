@@ -6,4 +6,3 @@ date_set,scope,condition,action,status,notes
 2026-06-16,FROTO,Stop 78 TL veya yeni temel bozulma,Kesim,active,TUPRS overweight tetiklenirse fon kaynagi burasi
 2026-07-01,GARAN+ISCTR,Banka MACD'leri 2-3 seans negatif kalirsa,Rejim tetigi degerlendir,active,07-02: fiyatlar yukari - MACD negatifligi gecikmeli sinyal artigi sayildi
 2026-06-17,THYAO,RSI asiri alimdan cikip momentum korunursa,Geri alim degerlendir,active,07-02: RSI ~75 asiri alim; tek tutarli pozitif-alfa isim
-</content>
