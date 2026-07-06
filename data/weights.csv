@@ -75,3 +75,8 @@ date,ticker,weight_pct,delta_pp,trigger
 2026-07-02,TCELL,20,0,tetik yok - sabit
 2026-07-02,TUPRS,20,0,overweight tetigi TETIKLENMEDI - 06-30/07-01 iki settled seans yukari ama 3. seans (07-02) intraday yatay + katalizorsuz; sabit
 2026-07-02,FROTO,18,0,tetik yok - sabit
+2026-07-06,GARAN,21,0,tetik yok - sabit (07-03 -%4 kirilma ama RSI 35 asiri satima yakin + F/K 4.7 tez saglam; dip satma yapilmadi)
+2026-07-06,ISCTR,21,0,tetik yok - sabit (RSI 38 asiri satima yakin; en ucuz banka; dip satma yapilmadi)
+2026-07-06,TCELL,20,0,tetik yok - sabit (MACD neg bacagi firing ama RSI 31.8 asiri satim + stop 98 delinmedi -> hold)
+2026-07-06,TUPRS,20,0,overweight REDDEDILDI - momentum settled bazda karsilandi (4 seans) ama RSI 74 asiri alim (tepe kovalamak 7.1); stop 200->220 trail ile korundu
+2026-07-06,FROTO,18,0,tetik yok - sabit (RSI 23 derin asiri satim; stop 78 delinmedi; dip satma riski)
