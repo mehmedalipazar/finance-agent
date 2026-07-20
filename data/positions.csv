@@ -1,6 +1,6 @@
 ticker,sector,entry_date,report_price,entry_close,initial_stop,current_stop,initial_target,status,exit_date,exit_close,exit_reason
 GARAN,Bankacilik,2026-06-16,140.80,140.20,118,118,192.15,open,,,
-TUPRS,Rafineri,2026-06-16,226.00,225.40,195,240,349.79,open,,,
+TUPRS,Rafineri,2026-06-16,226.00,225.40,195,268,349.79,open,,,
 FROTO,Otomotiv,2026-06-16,91.60,91.30,78,78,147.61,open,,,
 TCELL,Telekom,2026-06-16,114.60,115.20,99,98,161.22,open,,,
 THYAO,Havayolu,2026-06-16,326.50,326.50,285,,420.00,watchlist,2026-06-17,321.75,Dongusellik/kar volatilitesi nedeniyle 17 Haz'da cekirdekten cikarildi; izleme listesinde alfa takibi suruyor
