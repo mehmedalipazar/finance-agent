@@ -1,6 +1,6 @@
 ticker,sector,entry_date,report_price,entry_close,initial_stop,current_stop,initial_target,status,exit_date,exit_close,exit_reason
 GARAN,Bankacilik,2026-06-16,140.80,140.20,118,118,192.15,open,,,
-TUPRS,Rafineri,2026-06-16,226.00,225.40,195,291,349.79,open,,,
+TUPRS,Rafineri,2026-06-16,226.00,225.40,195,291,349.79,closed,2026-07-30,288.00,"settled 288.00 < 291 trailing stop DECISIVE breach (-1.03% alti) -> TRAILING STOP KESIM tetigi FIRED (07-30 settled); 07-31 intraday 287.75 teyit (reversiyon yok). RSI 62 asiri alimdan sogudu + MACD hist -2.07 momentum rolling. Disiplinli kar-kilitleme: giris 225.40 -> cikis 288.00 = +%27.77 getiri; realize alfa OTORITER compute_perf'ten. Trailing stop TASARLANDIGI gibi calisti (RSI 97 tepe sonrasi mean-reversion). Geri alim = yeni katalizor + RSI<60 pullback + settled >291 rejim onarimi gerekir"
 FROTO,Otomotiv,2026-06-16,91.60,91.30,78,78,147.61,closed,2026-07-28,77.55,"settled 77.55 < 78 stop KESIM tetigi FIRED (07-28 settled); 07-29 settled 76.10 tekrar teyit (-2.4% stop alti). Bilanco 4 Agu'ya (5 gun) tasindi - 'yakin binary katalizor' gerekcesi gecersiz kaldi; stop disiplini uygulandi. Momentum negatif (MACD -2.67 hist -0.32 NEG, RSI 33.8)"
 TCELL,Telekom,2026-06-16,114.60,115.20,99,98,161.22,closed,2026-07-24,103.70,"settled 103.70 < 104 pre-commit TAM KESIM tetigi FIRED (07-24 settled); rejim tezi yanlislandi, flow/teknik cokus, fundamental katalizor yok; realize alfa ~-6.2pp kilitlendi"
 THYAO,Havayolu,2026-06-16,326.50,326.50,285,,420.00,watchlist,2026-06-17,321.75,Dongusellik/kar volatilitesi nedeniyle 17 Haz'da cekirdekten cikarildi; izleme listesinde alfa takibi suruyor
@@ -8,3 +8,4 @@ ISCTR,Bankacilik,2026-06-17,15.01,14.94,12.80,12.80,21.10,closed,2026-07-29,12.3
 BIMAS,Perakende,2026-07-29,388.75,386.50,370,370,495.00,open,,,
 AEFES,Icecek,2026-07-29,21.60,21.48,20.40,20.40,27.11,open,,,
 CCOLA,Icecek,2026-07-29,91.75,91.45,86,86,105.00,open,,,
+ENJSA,Elektrik-Utility,2026-07-30,108.80,109.50,104,104,155.37,open,,,
