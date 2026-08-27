@@ -105,14 +105,28 @@ def main():
                 f"{t}: positions.csv entry_close={declared} ile prices.csv {ed} kapanışı "
                 f"{entry} uyuşmuyor (>%0,5). prices.csv esas alındı."
             )
-        if as_of not in prices[t]:
-            warnings.append(f"{t}: {as_of} kapanışı yok — son mevcut kapanış kullanıldı.")
-            last_d = max(d for d in prices[t] if d <= as_of)
+        # METHODOLOGY §4: kapanmış pozisyonlarda İKİ bacak da exit_date'te dondurulur.
+        exit_date = (p.get("exit_date") or "").strip()
+        is_closed = p["status"].strip() == "closed" and exit_date
+        cutoff = min(exit_date, as_of) if is_closed else as_of
+
+        if cutoff not in prices[t]:
+            avail = [d for d in prices[t] if d <= cutoff]
+            if not avail:
+                warnings.append(f"{t}: {cutoff} ve öncesi için kapanış yok — atlandı.")
+                continue
+            last_d = max(avail)
+            if not is_closed:
+                warnings.append(f"{t}: {cutoff} kapanışı yok — son mevcut kapanış kullanıldı.")
         else:
-            last_d = as_of
+            last_d = cutoff
         last = prices[t][last_d]
+
+        # XU100 bacağı da AYNI tarihte dondurulur (aynı dönem eşleşmesi).
+        bench_dates = [d for d in bench if d <= cutoff]
+        bench_d = max(bench_dates) if bench_dates else as_of
         ret = (last / entry - 1) * 100
-        xu_ret = (bench[as_of] / bench[ed] - 1) * 100
+        xu_ret = (bench[bench_d] / bench[ed] - 1) * 100
         rows.append({
             "ticker": t, "entry_date": ed, "entry": entry, "last": last,
             "ret": ret, "xu": xu_ret, "alpha": ret - xu_ret,

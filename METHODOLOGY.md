@@ -45,6 +45,11 @@ doğrudan `main`'e push eder.
 - **Resmi portföy metriği:** açık pozisyonların **eşit-ağırlık** ortalaması; XU100 bacağı
   isim bazında kendi giriş tarihinden bileşiklenir. (`weights.csv`'deki örnek ağırlıklar
   anlatı katmanıdır; resmi seri eşit-ağırlıktır.)
+- **Kapanmış pozisyonlarda İKİ bacak da `exit_date`'te dondurulur** (2026-08-27'de
+  düzeltildi; 08-24 METODOLOJİ tetiği). Hisse bacağı `exit_close`'ta durur, XU100 bacağı da
+  aynı tarihteki kapanışta durur — böylece realize alfa aynı dönemi ölçer. Eski davranış
+  (XU100 bacağının bugüne uzaması) TUPRS'ta 8,4 puanlık sahte sapma üretiyordu.
+  `exit_date` prices.csv'de yoksa o tarihten önceki son kapanış kullanılır.
 - **Watchlist** isimleri (ör. THYAO) portföye dahil edilmez; karşılaştırma için ayrı satırda izlenir.
 - Rapordaki geçmiş performans bölümü `compute_perf.py` çıktısından AYNEN alınır;
   model elle getiri/alfa hesaplamaz.
@@ -63,6 +68,35 @@ doğrudan `main`'e push eder.
 | `get_evds_data` API anahtarı istiyor (hosted MCP'de yok) | Katalog dışı EVDS verisine güvenilmez |
 
 Günlük DÜRÜSTLÜK bölümü yalnızca **o güne özgü** gerçek veri boşluklarını yazar.
+
+### 5.1 Değer bacağı: sektör medyanı HEDEF HARİÇ hesaplanır (2026-08-27)
+
+`get_sector_comparison`'un döndürdüğü `sector_median_pe` **hedef hisseyi de içerir**. Hedef,
+emsal kümesinin ortanca ismiyse "F/K < sektör medyanı" testi matematiksel olarak dejenere olur
+ve hisse ne kadar ucuz olursa olsun testi **asla geçemez**. Bu üç kez gerçekleşti:
+BIMAS 16,75 vs 16,75 (08-25), ENJSA 19,09 vs 19,09 (08-25), BIMAS 17,00 vs 17,00 (08-27).
+
+**Kural:** değer bacağı **`F/K < hedef HARİÇ emsal medyanı`** ile ölçülür. Ex-target medyan,
+emsal listesinden hedef satırı çıkarılıp kalan F/K'ların ortancası alınarak hesaplanır ve
+rapora **açıkça yazılır** (hem dahil hem hariç medyan gösterilir).
+
+### 5.2 Kesim sonrası GERİ ALIM kapısı (2026-08-27)
+
+08-24'te ölçüldü: TUPRS'ta geri alım kapısı "yeni katalizör + **RSI<60 pullback** + settled >291"
+diye yazılmıştı; `settled >291` 07-31'de sağlandı ama **RSI<60 bir kez bile gelmedi** çünkü hisse
+kesintisiz yükseldi. Kapı fiilen ulaşılamazdı ve 44 puan alfa maliyeti üretti. Güçlü trendde
+"RSI düşsün de girelim" kapısı yapısal olarak açılmaz.
+
+**Kural — kesilen bir isme geri giriş yalnızca şu ÜÇ şart birlikte sağlanırsa yapılır:**
+1. **SEÇİM KRİTERİ'nin üç bacağı da TAZE veriyle geçer** (reel kâr büyümesi, ex-target medyan
+   altı F/K veya EV/FAVÖK, son 3 ayda KAP-teyitli katalizör);
+2. **Son kesinleşmiş kapanış ema20'nin ÜSTÜNDE** (trend onarımı — RSI eşiği DEĞİL);
+3. **Çıkış tarihinden SONRA gelen, tarihli ve KAP-teyitli YENİ bir katalizör** vardır.
+
+RSI artık geri alım kapısında **eşik değil**; yalnızca pozisyon boyutlandırmasında uyarı
+sinyali olarak raporlanır (RSI yüksekse giriş **starter** boyutta yapılır).
+Bu kural her isme simetrik uygulanır: 08-27 itibarıyla CCOLA'yı (settled 79,00 < ema20 81,44)
+**açmaz**, AEFES'i (büyüme bacağı başarısız) **açmaz**.
 
 ## 6. Günlük rutinin ledger görevleri (sırayla, rapor yazılmadan ÖNCE)
 
