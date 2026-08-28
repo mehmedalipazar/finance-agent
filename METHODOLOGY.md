@@ -109,6 +109,47 @@ Bu kural her isme simetrik uygulanır: 08-27 itibarıyla CCOLA'yı (settled 79,0
    geçersizleşen → expired, yeni tetik → yeni satır.
 5. Pozisyon değişikliği varsa (giriş/çıkış/stop güncellemesi) `data/positions.csv`'yi güncelle.
 
+## 6.1 VERİ KESİNTİSİ PROTOKOLÜ (2026-08-28'de resmileşti)
+
+08-21, 08-26 ve 08-28'de rutin **hiçbir** piyasa verisine ulaşamadı. Bu üç günde davranış
+yalnızca **presedanla** taşındı; aşağıdaki kural o presedanı bağlayıcı hâle getirir ve
+Bölüm 6'nın "ZORUNLU KURAL"ıyla (prices.csv güncellenmeden rapor olusturulamaz) arasındaki
+lafzî çelişkiyi kapatır.
+
+**Kesinti tanımı (iki kanal birden kapalı):**
+1. `borsamcp-new` araçları oturuma yüklenmedi (araç kaydı = 0) **veya** sunucu bağlanamadı; **ve**
+2. doğrudan HTTP yedeği egress politikasınca reddedildi (proxy `connect_rejected` / 403).
+
+**Kesinti günü davranışı — sırayla:**
+1. **5 hisse listesi ÜRETİLMEZ.** KURAL 2 (fiyatı doğrulanamayan hisse listeye alınmaz)
+   portföy ölçeğinde uygulanır: 100 ismin 100'ünün fiyatı doğrulanamıyorsa hiçbir isim giremez.
+   Dünkü listeyi "bugünün önerisi" diye yeniden yazmak KURAL 3 ihlalidir.
+2. **LEDGER DONDURULUR.** `prices.csv`'ye satır **eklenmez** (intraday yazmak §3.2 yasağıdır;
+   web aramasından fiyat yazmak §6.1.1 yasağıdır). `positions.csv` değişmez.
+   `weights.csv`'ye o günün satırları **ölçülemedi** tetiğiyle yazılır — KURAL 9 gereği
+   tetik ölçülemiyorsa ağırlık oynatılmaz.
+3. **`compute_perf.py` YİNE DE ÇALIŞTIRILIR** ve çıktısı rapora aynen girer. Çıktı mevcut
+   en taze settled veriye kadar (as-of) geçerlidir; bu bir tekrar değil **devralmadır** ve
+   raporda böyle etiketlenir.
+4. **BACKFILL BORCU TETİK OLARAK KAYDEDİLİR** (`triggers.csv`, scope=ALTYAPI): kaç seansın
+   kapanışı eksik ve hangi tickerlar. Araçlar döndüğü ilk gün bu borç, o rutinin
+   **öncelikli** iş kalemidir.
+5. **KESİNTİ RAPORU YAZILIR** (`reports/YYYY-MM-DD-bist100.md`, başlıkta rapor tipi
+   ⛔ VERİ KESİNTİSİ olarak). Rapor kesintinin kanıtını (blokolanan hostlar + proxy
+   damgası/saati), donmuş ledger'ın durumunu ve çözülemeyen tetikleri listeler.
+
+**Bölüm 6 ZORUNLU KURAL'ının kapsamı:** o kural **öneri üreten** raporu bağlar. Kesinti
+raporu öneri üretmediği için kuralın kapsamı dışındadır. Yani kesinti günü rapor yazmak
+artık kuralın ihlali değil, **§6.1'in uygulanmasıdır.**
+
+### 6.1.1 Web araması fiyat çapası DEĞİLDİR
+
+08-21'de ölçüldü: "20 Ağustos 2026 XU100 kapanışı" araması **14.458,98** döndürdü; bu değer
+08-20'nin değil, `prices.csv`'de zaten kayıtlı **08-19 kapanışının** kopyasıydı — haber akışı
+bir günlük gecikmeyle yayınlanan seans özetini "bugün" diye sunuyor. Ledger'a yazılsaydı alfa
+serisi sessizce bozulacaktı. **Web araması ne settled kapanış ne intraday çapa olarak kullanılır**;
+kesinti günlerinde de kullanılmaz.
+
 ## 7. Geçmiş analiz derinliği
 
 - **Her gün:** ledger (4 CSV) + **yalnızca dünkü rapor** okunur. Tarihsel Öğrenimler bölümü
