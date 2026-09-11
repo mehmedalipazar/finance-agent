@@ -67,6 +67,7 @@ doğrudan `main`'e push eder.
 | `get_economic_calendar` sık boş | `get_macro_data` + `get_bond_yields` + son PPK kararı [kaynaklı] |
 | `get_news` (KAP/mynet akışı) sistematik olarak **boş** dönüyor — araç hata vermiyor, `successful_count: 1` ile sıfır kalem döndürüyor (2026-09-09'da n=4 eşiğine ulaşıldı: 08-27, 09-04, 09-08, 09-09) | Katalizör bacağının **resmî** kanıtı `get_earnings`'in **KAP bilanço tarihi + EPS beat**'idir. **Sınırı:** bilanço-dışı katalizörler (ihale, kapasite, sözleşme, ortaklık yapısı) bu araç setiyle **tespit edilemez** — bu, açıklanamayan fiyat hareketlerinin kalıcı bir kör noktasıdır ve bir hareketi "tez teyidi" saymamak için gerekçedir |
 | `get_evds_data` API anahtarı istiyor (hosted MCP'de yok) | Katalog dışı EVDS verisine güvenilmez |
+| **RSI-14 iki araçta AYRIŞIYOR:** `get_technical_analysis` (Wilder) ile `scan_stocks` sistematik olarak farklı okuma döndürüyor; fark isme göre 0,1–17,1 puan (2026-09-11'de n=4 eşiğine ulaşıldı: 09-08, 09-09, 09-10, 09-11 — TUPRS'ta 14,0 / 14,0 / 17,1 / 14,0 puan). Hangisinin doğru olduğu bu araç setiyle çözülemiyor | **Kararda MUHAFAZAKÂR okuma bağlayıcıdır** (bir eşiği geçmemek lehimize ise yüksek okuma, geçmek lehimize ise düşük okuma); raporda **iki değer de** gösterilir. RSI zaten tek başına karar üretmez — §5.2 gereği yalnızca pozisyon boyutlandırmasında uyarı sinyalidir |
 
 Günlük DÜRÜSTLÜK bölümü yalnızca **o güne özgü** gerçek veri boşluklarını yazar.
 
