@@ -100,6 +100,53 @@ sinyali olarak raporlanır (RSI yüksekse giriş **starter** boyutta yapılır).
 Bu kural her isme simetrik uygulanır: 08-27 itibarıyla CCOLA'yı (settled 79,00 < ema20 81,44)
 **açmaz**, AEFES'i (büyüme bacağı başarısız) **açmaz**.
 
+### 5.3 Nakit tavanı ve dağıtım mekanizması (2026-09-21)
+
+09-17'de bir **kural boşluğu** ölçüldü: iki zorunlu stop kesimi nakdi %45'e taşıdı, ama mevcut
+kural seti nakit **tavanı** için hiçbir aksiyon tanımlamıyordu (yalnızca %35 eşiği için sayaç
+vardı). Tetik açıldı ("tavan aşımı 3 ardışık seans sürerse dağıtım mekanizması yazılır"),
+sayaç 09-17 → 09-18 → 09-21'de **3/3 doldu** ve bu bölüm o tetiğin **tanımlı aksiyonudur**.
+
+Bölüm, nakit **%50'deyken ve piyasa verisine erişilemeyen bir kesinti gününde** yazılmıştır.
+Bu kasıtlıdır: kuralı yazarken o günün fiyatları **görülemiyordu**, dolayısıyla kural sonuca
+göre ayarlanamaz. Kuralı "uygun bir güne" ertelemek, tetiği yalnızca işe geldiğinde
+uygulamak olurdu.
+
+**1. Nakit asla tetiksiz dağıtılmaz.** Yüksek nakit seviyesi KURAL 9'u askıya **almaz**.
+"Nakit yüksek olduğu için" alım yapmak **kalıcı olarak yasaktır**. Bu madde, aşağıdaki
+maddelerin hiçbiri tarafından gevşetilemez.
+
+**2. Tavanın tanımlı aksiyonu ÖLÇÜMDÜR, alım değildir.** Nakit 3 ardışık **ölçülen** seans
+%40'ın üstünde kalırsa, rutin o günden itibaren her **ölçülen** seansta **BAĞLAYICI KISITI**
+rapora kaydeder: o gün **en çok adayı eleyen bacak**, **sayıyla** (ör. "büyüme bacağı /
+`eps_estimate` yok → 14 isim"). Böylece "liste dolmadı" pasif bir gözlem olmaktan çıkıp
+**ölçülmüş bir teşhis** olur.
+
+**3. Veri-boşluğu kısıtı ısrar ederse ikame ÖNCEDEN yazılır.** Bağlayıcı kısıt **5 ardışık
+ölçülen seansta** aynı **veri-boşluğu** bacağıysa — yani bacağı düşüren şey bir değerleme/
+büyüme **yargısı** değil, **beslemenin yokluğu** ise — huninin piyasa tarafından değil
+**araç seti** tarafından sınırlandığı kabul edilir ve o bacak için kabul edilen bir **ikame**
+METHODOLOGY'ye yazılır. **İkame, ilk uygulanacağı seanstan ÖNCEKİ bir raporda yazılır;**
+bir ismi içeri alacağı seansta yazılan ikame geçersizdir. (§5.1'deki ex-target medyan ve
+§5'teki EV/FAVÖK ikamesi bu sınıfın kabul edilmiş örnekleridir.)
+
+**4. Tavan şunları ASLA yetkilendirmez:**
+   - bir eleme bacağını, tam da bir ismi içeri alacağı gün gevşetmek;
+   - SEÇİM KRİTERİ'nin üç bacağı geçmeden giriş yapmak;
+   - mevcut bir pozisyonun ağırlığını, kendi tanımlı artış tetiği açılmadan artırmak;
+   - §5.2'nin geri-alım kapısını nakit gerekçesiyle gevşetmek.
+
+**5. Ölçüm birimi "ölçülen seans"tır.** Veri kesintisi günleri (§6.1) §5.3'ün 2. ve 3.
+maddesindeki sayaçları **ilerletmez** — bağlayıcı kısıt o gün ölçülemez. Buna karşılık
+1. maddedeki tavan sayacı **ilerler**, çünkü nakit oranı bir **ledger gerçeğidir**, piyasa
+ölçümü değildir.
+
+**Gerekçe (ölçülmüş):** 09-18'de liste 5 yerine **2 isimde** kaldı ve bağlayıcı kısıt
+piyasa değil **besleme** idi — `eps_estimate` 14 isimde yoktu ve bunların arasında F/K 2,93
+olan TSKB ile emsal medyanının %31,1 altındaki MPARK vardı. Nakit birikmesinin sebebi
+"fırsat yok" değil, "**kanıt sınıfına ulaşamıyorum**"dur. Doğru düzeltme nakdi zorla
+dağıtmak değil, kısıtı **ölçmek** ve ikamesini **önceden** yazmaktır.
+
 ## 6. Günlük rutinin ledger görevleri (sırayla, rapor yazılmadan ÖNCE)
 
 1. `get_historical_data` ile dünün kesinleşmiş kapanışlarını çek → `data/prices.csv`'ye ekle
