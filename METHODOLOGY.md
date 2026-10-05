@@ -62,7 +62,7 @@ doğrudan `main`'e push eder.
 | Limit | Kabul edilen ikame |
 |-------|--------------------|
 | Analist hedefi tek besleme (yfinance konsensüsü; ikinci bağımsız feed yok) | Konsensüs dağılımı (düşük/ort/medyan/yüksek + analist sayısı) + hedefin ima ettiği F/K kıyası |
-| Çeyreklik YoY kâr büyümesi % temiz çekilemiyor (İş Yatırım bankalarda sınırlı) | **KAP-teyitli EPS beat** yeterli kanıttır (ör. GARAN 28,07 vs 8,55) |
+| Çeyreklik YoY kâr büyümesi % temiz çekilemiyor (İş Yatırım bankalarda sınırlı) | **KAP-teyitli, AYNI ÇEYREK EPS beat** yeterli kanıttır — bkz. §5.4 (ör. GARAN 2026Q2: 7,21 vs 6,90 = +%4,5) |
 | Net borç/FAVÖK tekil çekilemiyor | **EV/FAVÖK** ikamesi (get_financial_ratios) |
 | `get_economic_calendar` sık boş | `get_macro_data` + `get_bond_yields` + son PPK kararı [kaynaklı] |
 | `get_news` (KAP/mynet akışı) sistematik olarak **boş** dönüyor — araç hata vermiyor, `successful_count: 1` ile sıfır kalem döndürüyor (2026-09-09'da n=4 eşiğine ulaşıldı: 08-27, 09-04, 09-08, 09-09) | Katalizör bacağının **resmî** kanıtı `get_earnings`'in **KAP bilanço tarihi + EPS beat**'idir. **Sınırı:** bilanço-dışı katalizörler (ihale, kapasite, sözleşme, ortaklık yapısı) bu araç setiyle **tespit edilemez** — bu, açıklanamayan fiyat hareketlerinin kalıcı bir kör noktasıdır ve bir hareketi "tez teyidi" saymamak için gerekçedir |
@@ -147,6 +147,21 @@ olan TSKB ile emsal medyanının %31,1 altındaki MPARK vardı. Nakit birikmesin
 "fırsat yok" değil, "**kanıt sınıfına ulaşamıyorum**"dur. Doğru düzeltme nakdi zorla
 dağıtmak değil, kısıtı **ölçmek** ve ikamesini **önceden** yazmaktır.
 
+### 5.4 Büyüme bacağı: EPS beat yalnızca AYNI ÇEYREK ile ölçülür (2026-10-05, aylık derin inceleme)
+
+09-29'da ölçüldü: `get_earnings` (MCP) `eps_actual` alanı **TTM EPS**, `eps_estimate` alanı ise
+**gelecek çeyrek tahmini**dir; raporlar 06-17'den 09-29'a kadar bu ikisini bölüp "3–4x beat"
+yazdı (§5'teki eski "GARAN 28,07 vs 8,55" örneği bu hatanın ürünüdür ve **geçersizdir**).
+Etki (geriye dönük): GARAN ve TUPRS kararları değişmezdi (gerçek beat +%4,5 / +%40,7);
+ISCTR 09-04 (Q2 −%32,1 miss) ve VAKBN 09-02 (aynı-çeyrek veri yok) **girilmezdi**.
+
+**Kural:** büyüme bacağı yalnızca **aynı çeyreğin** gerçekleşen EPS'i ile **aynı çeyreğin**
+bilanço öncesi tahmini karşılaştırılarak ölçülür (dönem etiketi eşleşen yfinance
+`earnings_history` satırı: `epsActual` vs `epsEstimate`). Her beat raporda **çeyrek etiketi
+ve kaynağıyla** yazılır. Aynı-çeyrek satırı yoksa bacak **"ölçülemedi"** sayılır ve isim
+alım listesine alınmaz (KURAL 2); TTM ya da nominal QoQ kıyası ikame **olamaz**.
+Bu bir veri-boşluğu bacağıdır: §5.3/3 sayacı bu nedenle ilerleyebilir.
+
 ## 6. Günlük rutinin ledger görevleri (sırayla, rapor yazılmadan ÖNCE)
 
 1. `get_historical_data` ile dünün kesinleşmiş kapanışlarını çek → `data/prices.csv`'ye ekle
@@ -213,3 +228,6 @@ kesinti günlerinde de kullanılmaz.
   `prices.csv`'de bu tarihler yoktur. 25 Haz'dan beri cron yalnızca hafta içi çalışır.
 - 2026-06-16 → 07-01 raporlarındaki performans tabloları intraday çapalıydı; 2026-07-02
   itibarıyla resmi seri bu ledger'dır (Bölüm 4'teki tarihsel not geçerli).
+- 2026-10-01 ve 10-02'de rutin hiç çalışmadı (rapor/commit yok — §6.1 kesintisinden farklı sınıf).
+  10-01'e planlanan aylık derin inceleme 10-05'te (ayın ilk ölçülen seansı) yapıldı; backfill ve
+  bu günlerde ateşlenen ön-kayıtlı tetikler (BIMAS) geriye dönük, kesinleşmiş kapanışla işlendi.
