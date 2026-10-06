@@ -50,6 +50,13 @@ doğrudan `main`'e push eder.
   aynı tarihteki kapanışta durur — böylece realize alfa aynı dönemi ölçer. Eski davranış
   (XU100 bacağının bugüne uzaması) TUPRS'ta 8,4 puanlık sahte sapma üretiyordu.
   `exit_date` prices.csv'de yoksa o tarihten önceki son kapanış kullanılır.
+- **Bilinen yanlılık (2026-10-06'da yazıldı, ÖNERİ — henüz uygulanmadı):** günlük kümülatif
+  seri, geçmiş günleri **rapor günü açık olan** isimlerle yeniden hesaplar; bir pozisyon kapanınca
+  serinin geçmişi değişir (10-05: BIMAS kapanınca 09-29 noktası +%13,90 → +%11,81). Bu bir
+  hayatta-kalan yanlılığıdır. Önerilen düzeltme: seri, her gün **o gün açık olan** pozisyonlarla
+  (realize edilenler çıkış tarihine kadar dahil) hesaplanır ve geçmiş noktalar dondurulur.
+  Script değişikliği skorlamayı geriye dönük değiştireceği için **aylık derin incelemede (11-02)**
+  karar verilir; o güne kadar çıktı aynen kullanılır ve resmi metrik başlıktaki son-gün değeridir.
 - **Watchlist** isimleri (ör. THYAO) portföye dahil edilmez; karşılaştırma için ayrı satırda izlenir.
 - Rapordaki geçmiş performans bölümü `compute_perf.py` çıktısından AYNEN alınır;
   model elle getiri/alfa hesaplamaz.
@@ -68,6 +75,7 @@ doğrudan `main`'e push eder.
 | `get_news` (KAP/mynet akışı) sistematik olarak **boş** dönüyor — araç hata vermiyor, `successful_count: 1` ile sıfır kalem döndürüyor (2026-09-09'da n=4 eşiğine ulaşıldı: 08-27, 09-04, 09-08, 09-09) | Katalizör bacağının **resmî** kanıtı `get_earnings`'in **KAP bilanço tarihi + EPS beat**'idir. **Sınırı:** bilanço-dışı katalizörler (ihale, kapasite, sözleşme, ortaklık yapısı) bu araç setiyle **tespit edilemez** — bu, açıklanamayan fiyat hareketlerinin kalıcı bir kör noktasıdır ve bir hareketi "tez teyidi" saymamak için gerekçedir |
 | `get_evds_data` API anahtarı istiyor (hosted MCP'de yok) | Katalog dışı EVDS verisine güvenilmez |
 | **RSI-14 iki araçta AYRIŞIYOR:** `get_technical_analysis` (Wilder) ile `scan_stocks` sistematik olarak farklı okuma döndürüyor; fark isme göre 0,1–17,1 puan (2026-09-11'de n=4 eşiğine ulaşıldı: 09-08, 09-09, 09-10, 09-11 — TUPRS'ta 14,0 / 14,0 / 17,1 / 14,0 puan). Hangisinin doğru olduğu bu araç setiyle çözülemiyor | **Kararda MUHAFAZAKÂR okuma bağlayıcıdır** (bir eşiği geçmemek lehimize ise yüksek okuma, geçmek lehimize ise düşük okuma); raporda **iki değer de** gösterilir. RSI zaten tek başına karar üretmez — §5.2 gereği yalnızca pozisyon boyutlandırmasında uyarı sinyalidir |
+| **`borsamcp-new` oran/TA/tahvil/makro araçları kısmi arıza** — `get_financial_ratios` (çoklu sembolde 60 sn timeout; tekil çağrıda bazen "Invalid content from server"), `get_technical_analysis`, `get_bond_yields`, `get_macro_data` zaman aşımı (n=3 ölçülen seans: 09-30, 10-05, 10-06; 2026-10-06'da yazıldı). `get_historical_data` ve `scan_stocks` çalışıyor | **Resmî yedek yol (bu sırayla):** (1) `get_financial_ratios` **tekil** sembolle (kaynağı İş Yatırım; `current_price` alanı gün-içi fiyatın 2. bağımsız kaynağıdır); (2) F/K, EV/FAVÖK, RSI, EMA20, MACD için TradingView scanner doğrudan POST (`price_earnings_ttm`, `enterprise_value_ebitda_ttm`); emsal kümeleri borsapy endeks üyeliği ∩ XU100, yalnızca pozitif F/K; (3) tahvil/TÜFE için borsapy `bonds` / `Inflation`; (4) aynı-çeyrek EPS ve konsensüs dağılımı için yfinance `earnings_history` + borsapy `analyst_price_targets`. Emsal medyanı **tek kaynaktan** (TradingView) hesaplanır; İş Yatırım F/K'sı yalnızca çapraz kontrol olarak yanında gösterilir — kaynak, sonucu seçmek için gün içinde değiştirilmez |
 
 Günlük DÜRÜSTLÜK bölümü yalnızca **o güne özgü** gerçek veri boşluklarını yazar.
 
