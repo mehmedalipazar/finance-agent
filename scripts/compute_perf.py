@@ -196,6 +196,59 @@ def main():
     print()
     print("</details>")
 
+    # --- PIT (point-in-time) zincirleme seri — METHODOLOGY §4, 2026-11-02 aylık inceleme kararı ---
+    # Her gün d için: d-1 kapanışında elde tutulan (giriş <= d-1, çıkış yoksa veya çıkış >= d)
+    # TÜM çekirdek pozisyonların (kapanmışlar çıkış tarihine kadar dahil) eşit-ağırlık günlük getirisi
+    # ve aynı isimler için XU100 günlük getirisi zincirlenir. Geçmiş noktalar pozisyon
+    # kapandığında DEĞİŞMEZ (hayatta-kalan yanlılığı yok). Watchlist dahil edilmez.
+    core = []
+    for p in positions:
+        st = p["status"].strip()
+        if st not in ("open", "closed"):
+            continue
+        ed = p["entry_date"]
+        xd = (p.get("exit_date") or "").strip() if st == "closed" else ""
+        if p["ticker"] not in prices or ed not in prices[p["ticker"]]:
+            continue
+        core.append((p["ticker"], ed, xd or "9999-12-31"))
+    pit = []  # (date, port_cum, xu_cum, alpha_pp, n_held)
+    pv, xv = 1.0, 1.0
+    pk, pit_dd, pit_dd_date = 1.0, 0.0, None
+    for i in range(1, len(all_dates)):
+        d0, d = all_dates[i - 1], all_dates[i]
+        rets, xrets = [], []
+        for t, ed, xd in core:
+            if ed <= d0 and xd >= d and d0 in prices[t] and d in prices[t]:
+                rets.append(prices[t][d] / prices[t][d0] - 1)
+                xrets.append(bench[d] / bench[d0] - 1)
+        if not rets:
+            continue
+        pv *= 1 + sum(rets) / len(rets)
+        xv *= 1 + sum(xrets) / len(xrets)
+        rel = pv / xv
+        pk = max(pk, rel)
+        dd = (rel / pk - 1) * 100
+        if dd < pit_dd:
+            pit_dd, pit_dd_date = dd, d
+        pit.append((d, (pv - 1) * 100, (xv - 1) * 100, (pv - xv) * 100, len(rets)))
+    if pit:
+        d, pr, xr, al, n = pit[-1]
+        print()
+        print("#### PIT zincirleme seri (hayatta-kalan yanlılığı düzeltilmiş; kapanan pozisyonlar çıkışa kadar dahil)")
+        print()
+        print(f"**PIT kümülatif (2026-06-16 → {d}):** portföy {tr_pct(pr)} · XU100 (aynı isim-gün) {tr_pct(xr)} · "
+              f"**PIT ALFA {tr_pct(al)}** · Maks. rölatif düşüş {tr_pct(pit_dd)}"
+              + (f" ({pit_dd_date})" if pit_dd_date else ""))
+        print()
+        print("<details><summary>PIT günlük seri (son 15 seans)</summary>")
+        print()
+        print("| Tarih | Portföy | XU100 | ALFA (pp) | İsim |")
+        print("|-------|-------:|-------:|-------:|---:|")
+        for d, pr, xr, al, n in pit[-15:]:
+            print(f"| {d} | {tr_pct(pr)} | {tr_pct(xr)} | {tr_pct(al)} | {n} |")
+        print()
+        print("</details>")
+
     wd, wrows = load_last_weights()
     if wrows:
         active = [w for w in wrows if float(w["weight_pct"]) > 0]
