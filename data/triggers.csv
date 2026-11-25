@@ -1062,31 +1062,59 @@ date_set,scope,condition,action,status,notes
 2026-11-23,METODOLOJI,PIT seri ile eski baslik seri arasindaki fark 2026-12-01 incelemesinde degerlendirilir,Eski baslik seri kaldirilir mi karari,expired,"11-23 (as-of 11-20): PIT +%17,76 vs baslik +%26,05 (+8,29 puan; baslik tek isim GARAN, hayatta kalan yanliligi yon degistirdi) | 11-24: halefe devredildi"
 2026-11-23,ALTYAPI,RSI/MACD ayrismasi (TV gun-ici vs settled-Wilder),5 limiti: muhafazakar okuma; iki deger raporlanir,expired,"11-23: GARAN RSI settled 55,17 / TV 59,04; THYAO 74,05 / 75,49; MACD GARAN 4,46 / 4,24 | 11-24: halefe devredildi"
 2026-11-23,ALTYAPI,borsamcp-new durum izleme,MCP calisiyorsa birincil; degilse HTTP yedek yolu,expired,"11-23: KISMI - get_historical_data + scan_stocks 10:39 calisti (19 isim, TV ile birebir); get_earnings, get_macro_data, get_financial_ratios 10:41 503. Yedek: TV scanner, Is Y. OneEndeks, Yahoo quoteSummary | 11-24: halefe devredildi"
-2026-11-24,GARAN,settled <132,Stop kesimi (TAM) - TRAILING,active,"11-23 settled 145,70 (tampon %10,38)"
-2026-11-24,GARAN,"RSI-14 (Wilder, settled) <38",Kademe dusur %16 -> %10,active,"11-23 settled-Wilder 57,25 (TV gun-ici 59,04)"
-2026-11-24,GARAN,2 ardisik settled >=160,Trailing stop yeniden yazilir (yapiya demirli),active,"0/2: 11-23 settled 145,70 (%9,81 uzakta)"
-2026-11-24,GARAN,F/K (TV) < XBANK ex-target medyan 2 ardisik olculen seans,Deger bacagi ONARILDI -> alim listesine geri al,active,"0/2: 11-24 TV 5,019 vs ex-target 4,612 (+%8,8; n=7); Is Y. capraz 4,9 (+%6,2) -> ayni isaret"
-2026-11-24,GARAN,deger onarimi 2/2 VE RSI-Wilder settled <68 VE settled > EMA20,Artis %16 -> %20,active,"2/3: RSI 57,25 ✓; settled 145,70 > EMA20 143,24 ✓ (+%1,72); deger 0/2"
-2026-11-24,GARAN,RSI-14 settled-Wilder tekrar >=68,Artis yasagi GERI GELIR (artis tetigi askiya),active,"11-23: 57,25"
-2026-11-24,GARAN,settled < EMA20 (settled),Bilgi: trend teyidi kaybi -> artis tetigi 2/3->1/3; stop degismez,active,"11-23 settled 145,70 vs EMA20 143,24 (+%1,72; tampon genisledi)"
-2026-11-24,TUPRS,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter) - TUPRS-4,active,"0/3 sagli degil: (1) F/K TV 4,895 < XUSIN ex-target 10,357 ✓, Q3 +%10,0 ✓; (2) settled 324,00 < EMA20 345,24 (-%6,15) ✗; MACD -10,29 huni disi; (3) cikis (11-20) SONRASI yeni KAP katalizoru yok ✗ (sonraki bilanco 2027-02-11)"
-2026-11-24,BIMAS,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,"0/3: settled 370,25 < EMA20 381,51 ✗; F/K 13,593 > XUHIZ ex-target 12,964 ✗; MACD -2,845 huni disi"
-2026-11-24,ISCTR,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris,active,"11-24: MACD<=0 -> huni disi (TV + MCP scan_stocks); Q3 -%39,0 miss devam"
-2026-11-24,VAKBN,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris,active,"F/K 4,106 < 5,019 GECTI; Yahoo earningsHistory BOS; MCP get_earnings yalniz TTM 8,1239 (9. seans) -> OLCULEMEDI"
-2026-11-24,FROTO,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,11-24: MACD<=0 -> huni disi (TV + MCP scan_stocks); earningsHistory BOS (10. seans)
-2026-11-24,CCOLA,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,"MACD +0,492; F/K 10,262 < XUSIN ex-target 10,357 ✓ (-%0,9); Q3 satiri YOK (yalniz 2025Q4 tahmin, actual bos) -> OLCULEMEDI (6. seans)"
-2026-11-24,ENJSA,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,11-24: MACD<=0 -> huni disi; deger 11-23'te BASARISIZ
-2026-11-24,TCELL,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,11-24: MACD<=0 huni disi
-2026-11-24,KRDMD,Q3 ayni-ceyrek kar kaniti + F/K < XUSIN ex-target + settled >ema20,Starter %5,active,11-24: MACD<=0 huni disi
-2026-11-24,THYAO,Watchlist -> cekirdek: SECIM KRITERI 3 bacak + settled >ema20,Starter %5,active,"F/K 3,936 < XUHIZ ex-target 13,389 GECTI; settled 321,00 > EMA20 306,30 ✓; earningsHistory BOS, MCP yalniz TTM 81,5546 (12. seans) -> OLCULEMEDI; RSI-Wilder 65,33"
-2026-11-24,TSKB,SECIM KRITERI 3 bacak,Starter %5,active,"F/K 2,643 < 5,019 GECTI; earningsHistory BOS (11. seans)"
-2026-11-24,TCKRC,SECIM KRITERI 3 bacak,Starter %5,active,"F/K 8,073 < 10,357 GECTI; earningsHistory BOS; konsensus yok (8. seans)"
-2026-11-24,AKSA,SECIM KRITERI 3 bacak,Starter %5,active,"F/K 7,226 < 10,357 GECTI; earningsHistory BOS (7. seans)"
-2026-11-24,ALARK,SECIM KRITERI 3 bacak,Starter %5,active,11-24: MACD<=0 -> huni disi
-2026-11-24,TOASO,SECIM KRITERI 3 bacak (YENI - 11-23 MACD>0 ile huniye girdi),Starter %5,active,"MACD +1,019; F/K 9,872 < XUSIN ex-target 10,357 GECTI; EV/FAVOK 12,61; earningsHistory BOS, MCP yalniz TTM 25,4249 (2. seans) -> OLCULEMEDI"
-2026-11-24,NAKIT,METHODOLOGY 5.3/2 - nakit >%40 iken her OLCULEN seansta BAGLAYICI KISIT sayiyla,Baglayici kisit kaydi,active,11-24 (42. olcum): DEGER -> 9 isim (6 pahali + 3 bos F/K) vs BUYUME 7 (7/7 olculemedi = veri-boslugu). Baglayici kisit BUYUME->DEGER geri dondu
-2026-11-24,NAKIT,5.3/3: buyume bacagi 5 ardisik olculen seans baglayici VE veri-boslugu,Ikame METHODOLOGY'ye ilk uygulama seansindan ONCE yazilir (12-01 incelemesi gundemi),active,0/5 SIFIRLANDI (11-24: baglayici kisit DEGER 9 > BUYUME 7; ardisiklik bozuldu)
-2026-11-24,METODOLOJI,Emsal F/K kaynagi TradingView; Is Yatirim tekil F/K capraz kontrol,Iki kaynak yan yana; isaret farki raporlanir,active,"n=26 (11-24: GARAN TV 5,019 / Is Y. 4,9 - ikisi de ex-target 4,612 ustu, isaret ayni)"
-2026-11-24,METODOLOJI,PIT seri ile eski baslik seri arasindaki fark 2026-12-01 incelemesinde degerlendirilir,Eski baslik seri kaldirilir mi karari,active,"11-24 (as-of 11-23): PIT +%18,93 vs baslik +%27,30 (+8,37 puan)"
-2026-11-24,ALTYAPI,RSI/MACD ayrismasi (TV gun-ici vs settled-Wilder),5 limiti: muhafazakar okuma; iki deger raporlanir,active,"11-24: GARAN RSI settled 57,25 / TV 59,04; THYAO 65,33 / 65,33; MACD GARAN 4,13 / 3,92"
-2026-11-24,ALTYAPI,borsamcp-new durum izleme,MCP calisiyorsa birincil; degilse HTTP yedek yolu,active,"11-24: CALISIYOR - get_historical_data, scan_stocks, get_financial_ratios (Is Y.), get_earnings, get_macro_data 10:38-10:41 yanit verdi. Yedek: TV scanner (emsal/F/K), Yahoo quoteSummary (ayni-ceyrek EPS, konsensus)"
+2026-11-24,GARAN,settled <132,Stop kesimi (TAM) - TRAILING,expired,"11-23 settled 145,70 (tampon %10,38) | 11-25: halefe devredildi"
+2026-11-24,GARAN,"RSI-14 (Wilder, settled) <38",Kademe dusur %16 -> %10,expired,"11-23 settled-Wilder 57,25 (TV gun-ici 59,04) | 11-25: halefe devredildi"
+2026-11-24,GARAN,2 ardisik settled >=160,Trailing stop yeniden yazilir (yapiya demirli),expired,"0/2: 11-23 settled 145,70 (%9,81 uzakta) | 11-25: halefe devredildi"
+2026-11-24,GARAN,F/K (TV) < XBANK ex-target medyan 2 ardisik olculen seans,Deger bacagi ONARILDI -> alim listesine geri al,expired,"0/2: 11-24 TV 5,019 vs ex-target 4,612 (+%8,8; n=7); Is Y. capraz 4,9 (+%6,2) -> ayni isaret | 11-25: halefe devredildi"
+2026-11-24,GARAN,deger onarimi 2/2 VE RSI-Wilder settled <68 VE settled > EMA20,Artis %16 -> %20,expired,"2/3: RSI 57,25 ✓; settled 145,70 > EMA20 143,24 ✓ (+%1,72); deger 0/2 | 11-25: halefe devredildi"
+2026-11-24,GARAN,RSI-14 settled-Wilder tekrar >=68,Artis yasagi GERI GELIR (artis tetigi askiya),expired,"11-23: 57,25 | 11-25: halefe devredildi"
+2026-11-24,GARAN,settled < EMA20 (settled),Bilgi: trend teyidi kaybi -> artis tetigi 2/3->1/3; stop degismez,expired,"11-23 settled 145,70 vs EMA20 143,24 (+%1,72; tampon genisledi) | 11-25: halefe devredildi"
+2026-11-24,TUPRS,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter) - TUPRS-4,expired,"0/3 sagli degil: (1) F/K TV 4,895 < XUSIN ex-target 10,357 ✓, Q3 +%10,0 ✓; (2) settled 324,00 < EMA20 345,24 (-%6,15) ✗; MACD -10,29 huni disi; (3) cikis (11-20) SONRASI yeni KAP katalizoru yok ✗ (sonraki bilanco 2027-02-11) | 11-25: halefe devredildi"
+2026-11-24,BIMAS,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),expired,"0/3: settled 370,25 < EMA20 381,51 ✗; F/K 13,593 > XUHIZ ex-target 12,964 ✗; MACD -2,845 huni disi | 11-25: halefe devredildi"
+2026-11-24,ISCTR,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris,expired,"11-24: MACD<=0 -> huni disi (TV + MCP scan_stocks); Q3 -%39,0 miss devam | 11-25: halefe devredildi"
+2026-11-24,VAKBN,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris,expired,"F/K 4,106 < 5,019 GECTI; Yahoo earningsHistory BOS; MCP get_earnings yalniz TTM 8,1239 (9. seans) -> OLCULEMEDI | 11-25: halefe devredildi"
+2026-11-24,FROTO,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),expired,11-24: MACD<=0 -> huni disi (TV + MCP scan_stocks); earningsHistory BOS (10. seans) | 11-25: halefe devredildi
+2026-11-24,CCOLA,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),expired,"MACD +0,492; F/K 10,262 < XUSIN ex-target 10,357 ✓ (-%0,9); Q3 satiri YOK (yalniz 2025Q4 tahmin, actual bos) -> OLCULEMEDI (6. seans) | 11-25: halefe devredildi"
+2026-11-24,ENJSA,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),expired,11-24: MACD<=0 -> huni disi; deger 11-23'te BASARISIZ | 11-25: halefe devredildi
+2026-11-24,TCELL,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),expired,11-24: MACD<=0 huni disi | 11-25: halefe devredildi
+2026-11-24,KRDMD,Q3 ayni-ceyrek kar kaniti + F/K < XUSIN ex-target + settled >ema20,Starter %5,expired,11-24: MACD<=0 huni disi | 11-25: halefe devredildi
+2026-11-24,THYAO,Watchlist -> cekirdek: SECIM KRITERI 3 bacak + settled >ema20,Starter %5,expired,"F/K 3,936 < XUHIZ ex-target 13,389 GECTI; settled 321,00 > EMA20 306,30 ✓; earningsHistory BOS, MCP yalniz TTM 81,5546 (12. seans) -> OLCULEMEDI; RSI-Wilder 65,33 | 11-25: halefe devredildi"
+2026-11-24,TSKB,SECIM KRITERI 3 bacak,Starter %5,expired,"F/K 2,643 < 5,019 GECTI; earningsHistory BOS (11. seans) | 11-25: halefe devredildi"
+2026-11-24,TCKRC,SECIM KRITERI 3 bacak,Starter %5,expired,"F/K 8,073 < 10,357 GECTI; earningsHistory BOS; konsensus yok (8. seans) | 11-25: halefe devredildi"
+2026-11-24,AKSA,SECIM KRITERI 3 bacak,Starter %5,expired,"F/K 7,226 < 10,357 GECTI; earningsHistory BOS (7. seans) | 11-25: halefe devredildi"
+2026-11-24,ALARK,SECIM KRITERI 3 bacak,Starter %5,expired,11-24: MACD<=0 -> huni disi | 11-25: halefe devredildi
+2026-11-24,TOASO,SECIM KRITERI 3 bacak (YENI - 11-23 MACD>0 ile huniye girdi),Starter %5,expired,"MACD +1,019; F/K 9,872 < XUSIN ex-target 10,357 GECTI; EV/FAVOK 12,61; earningsHistory BOS, MCP yalniz TTM 25,4249 (2. seans) -> OLCULEMEDI | 11-25: halefe devredildi"
+2026-11-24,NAKIT,METHODOLOGY 5.3/2 - nakit >%40 iken her OLCULEN seansta BAGLAYICI KISIT sayiyla,Baglayici kisit kaydi,expired,11-24 (42. olcum): DEGER -> 9 isim (6 pahali + 3 bos F/K) vs BUYUME 7 (7/7 olculemedi = veri-boslugu). Baglayici kisit BUYUME->DEGER geri dondu | 11-25: halefe devredildi
+2026-11-24,NAKIT,5.3/3: buyume bacagi 5 ardisik olculen seans baglayici VE veri-boslugu,Ikame METHODOLOGY'ye ilk uygulama seansindan ONCE yazilir (12-01 incelemesi gundemi),expired,0/5 SIFIRLANDI (11-24: baglayici kisit DEGER 9 > BUYUME 7; ardisiklik bozuldu) | 11-25: halefe devredildi
+2026-11-24,METODOLOJI,Emsal F/K kaynagi TradingView; Is Yatirim tekil F/K capraz kontrol,Iki kaynak yan yana; isaret farki raporlanir,expired,"n=26 (11-24: GARAN TV 5,019 / Is Y. 4,9 - ikisi de ex-target 4,612 ustu, isaret ayni) | 11-25: halefe devredildi"
+2026-11-24,METODOLOJI,PIT seri ile eski baslik seri arasindaki fark 2026-12-01 incelemesinde degerlendirilir,Eski baslik seri kaldirilir mi karari,expired,"11-24 (as-of 11-23): PIT +%18,93 vs baslik +%27,30 (+8,37 puan) | 11-25: halefe devredildi"
+2026-11-24,ALTYAPI,RSI/MACD ayrismasi (TV gun-ici vs settled-Wilder),5 limiti: muhafazakar okuma; iki deger raporlanir,expired,"11-24: GARAN RSI settled 57,25 / TV 59,04; THYAO 65,33 / 65,33; MACD GARAN 4,13 / 3,92 | 11-25: halefe devredildi"
+2026-11-24,ALTYAPI,borsamcp-new durum izleme,MCP calisiyorsa birincil; degilse HTTP yedek yolu,expired,"11-24: CALISIYOR - get_historical_data, scan_stocks, get_financial_ratios (Is Y.), get_earnings, get_macro_data 10:38-10:41 yanit verdi. Yedek: TV scanner (emsal/F/K), Yahoo quoteSummary (ayni-ceyrek EPS, konsensus) | 11-25: halefe devredildi"
+2026-11-25,GARAN,settled <132,Stop kesimi (TAM) - TRAILING,active,"11-24 settled 143,30 (tampon %8,56)"
+2026-11-25,GARAN,"RSI-14 (Wilder, settled) <38",Kademe dusur %16 -> %10,active,"11-24 settled-Wilder 53,00 (TV gun-ici 53,01)"
+2026-11-25,GARAN,2 ardisik settled >=160,Trailing stop yeniden yazilir (yapiya demirli),active,"0/2: 11-24 settled 143,30 (%11,65 uzakta)"
+2026-11-25,GARAN,F/K (TV) < XBANK ex-target medyan 2 ardisik olculen seans,Deger bacagi ONARILDI -> alim listesine geri al,active,"0/2: 11-25 TV 4,892 vs ex-target 4,775 (+%2,4; n=7; prim 8,8 -> 2,4 daraldi); Is Y. capraz 4,9 (+%2,6) -> ayni isaret"
+2026-11-25,GARAN,deger onarimi 2/2 VE RSI-Wilder settled <68 VE settled > EMA20,Artis %16 -> %20,active,"2/3: RSI 53,00 ✓; settled 143,30 > EMA20 143,24 ✓ (+%0,04, INCE); deger 0/2"
+2026-11-25,GARAN,RSI-14 settled-Wilder tekrar >=68,Artis yasagi GERI GELIR (artis tetigi askiya),active,"11-24: 53,00"
+2026-11-25,GARAN,settled < EMA20 (settled),Bilgi: trend teyidi kaybi -> artis tetigi 2/3->1/3; stop degismez,active,"11-24 settled 143,30 vs EMA20 143,24 (+%0,04; tampon %1,72 -> %0,04 daraldi, ATESLENMEDI)"
+2026-11-25,TUPRS,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter) - TUPRS-4,active,"0/3 sagli degil: (1) F/K TV 4,880 < XUSIN ex-target 9,989 ✓, Q3 +%10,0 ✓; (2) settled 320,00 < EMA20 342,83 (-%6,66) ✗; MACD -10,94 huni disi; (3) cikis (11-20) SONRASI yeni KAP katalizoru yok ✗ (sonraki bilanco 2027-02-11)"
+2026-11-25,BIMAS,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,"0/3: settled 368,00 < EMA20 380,22 ✗; F/K 13,510 > XUHIZ ex-target 13,042 ✗; MACD -3,674 huni disi"
+2026-11-25,ISCTR,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris,active,"11-25: MACD<=0 -> huni disi (TV + MCP scan_stocks); Q3 -%39,0 miss devam"
+2026-11-25,VAKBN,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris,active,"F/K 3,986 < 4,892 GECTI; Yahoo earningsHistory BOS; MCP get_earnings yalniz TTM 8,1239 (10. seans) -> OLCULEMEDI"
+2026-11-25,FROTO,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,11-25: MACD<=0 -> huni disi (TV + MCP scan_stocks)
+2026-11-25,CCOLA,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,"MACD +0,318; F/K 10,079 > XUSIN ex-target 9,899 ✗ (+%1,8; DEGER BASARISIZ, dun -%0,9 ile geciyordu); Q3 satiri YOK -> OLCULEMEDI (7. seans)"
+2026-11-25,ENJSA,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,11-25: MACD<=0 -> huni disi
+2026-11-25,TCELL,METHODOLOGY 5.2 geri giris kapisi (3 sart),Yeniden giris (starter),active,11-25: MACD<=0 huni disi
+2026-11-25,KRDMD,Q3 ayni-ceyrek kar kaniti + F/K < XUSIN ex-target + settled >ema20,Starter %5,active,11-25: MACD<=0 huni disi
+2026-11-25,THYAO,Watchlist -> cekirdek: SECIM KRITERI 3 bacak + settled >ema20,Starter %5,active,"F/K 3,905 < XUHIZ ex-target 13,254 GECTI; settled 320,50 > EMA20 307,66 ✓; earningsHistory BOS, MCP yalniz TTM 81,5546 (13. seans) -> OLCULEMEDI; RSI-Wilder 64,82"
+2026-11-25,TSKB,SECIM KRITERI 3 bacak,Starter %5,active,"F/K 2,542 < 4,892 GECTI; earningsHistory BOS (12. seans)"
+2026-11-25,TCKRC,SECIM KRITERI 3 bacak,Starter %5,active,"F/K 7,834 < 10,079 GECTI; earningsHistory BOS; konsensus yok (9. seans)"
+2026-11-25,AKSA,SECIM KRITERI 3 bacak,Starter %5,active,"F/K 7,434 < 10,079 GECTI; earningsHistory BOS (8. seans)"
+2026-11-25,ALARK,SECIM KRITERI 3 bacak,Starter %5,active,11-25: MACD<=0 -> huni disi
+2026-11-25,TOASO,SECIM KRITERI 3 bacak (YENI - 11-23 MACD>0 ile huniye girdi),Starter %5,active,"MACD +0,749; F/K 9,589 < XUSIN ex-target 10,079 GECTI; EV/FAVOK 12,79; earningsHistory BOS, MCP yalniz TTM 25,4249 (3. seans) -> OLCULEMEDI"
+2026-11-25,NAKIT,METHODOLOGY 5.3/2 - nakit >%40 iken her OLCULEN seansta BAGLAYICI KISIT sayiyla,Baglayici kisit kaydi,active,11-25 (43. olcum): DEGER -> 9 isim (7 pahali + 2 bos F/K) vs BUYUME 6 (6/6 olculemedi = veri-boslugu). CCOLA ve GARAN degerde dustu
+2026-11-25,NAKIT,5.3/3: buyume bacagi 5 ardisik olculen seans baglayici VE veri-boslugu,Ikame METHODOLOGY'ye ilk uygulama seansindan ONCE yazilir (12-01 incelemesi gundemi),active,0/5 (11-25: baglayici kisit DEGER 9 > BUYUME 6)
+2026-11-25,METODOLOJI,Emsal F/K kaynagi TradingView; Is Yatirim tekil F/K capraz kontrol,Iki kaynak yan yana; isaret farki raporlanir,active,"n=27 (11-25: GARAN TV 4,892 / Is Y. 4,9 - ikisi de ex-target 4,775 ustu, isaret ayni; THYAO TV 3,905 / Is Y. 3 - ikisi de medyan alti)"
+2026-11-25,METODOLOJI,PIT seri ile eski baslik seri arasindaki fark 2026-12-01 incelemesinde degerlendirilir,Eski baslik seri kaldirilir mi karari,active,"11-25 (as-of 11-24): PIT +%18,32 vs baslik +%26,55 (+8,23 puan)"
+2026-11-25,ALTYAPI,RSI/MACD ayrismasi (TV gun-ici vs settled-Wilder),5 limiti: muhafazakar okuma; iki deger raporlanir,active,"11-25: GARAN RSI settled 53,00 / TV 53,01; THYAO 64,82 / 62,70; MACD GARAN 3,63 / 3,20"
+2026-11-25,ALTYAPI,borsamcp-new durum izleme,MCP calisiyorsa birincil; degilse HTTP yedek yolu,active,"11-25: CALISIYOR - get_historical_data, scan_stocks (15 isim, TV ile birebir), get_financial_ratios (Is Y.), get_earnings, get_macro_data 10:38-10:41 yanit verdi. Yedek: TV scanner (emsal/F/K), Yahoo quoteSummary (ayni-ceyrek EPS, konsensus)"
